@@ -1,8 +1,8 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import { useState } from 'react';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
 export default function Home() {
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState("imstupidpleasehelp");
   return (
     <div className={styles.container}>
       <Head>
@@ -11,16 +11,19 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Github users  
-        </h1>
+        <h1 className={styles.title}>Github users</h1>
 
-        
         <div className={styles.grid}>
-          <form action="api/users">
-            <input placeholder="Username"></input><button type="submit"onSubmit={() => setUserName()}>search</button>
-          </form>
-          </div>
+          {/*<form action="api/users"> */}
+          <input
+            placeholder="Username"
+            onChange={e => setUserName(e.target.value)}
+            type="text"
+            value={userName}
+          
+          ></input>
+          {userName}
+        </div>
       </main>
 
       <footer className={styles.footer}>
@@ -29,10 +32,11 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/download.png" alt="Vercel Logo" className={styles.logo} />Doge
+          Powered by{" "}
+          <img src="/download.png" alt="Vercel Logo" className={styles.logo} />
+          Doge
         </a>
       </footer>
     </div>
-  )
+  );
 }
