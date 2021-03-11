@@ -1,10 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-const getData = async (name) => {
-  try {
-    const data = await fetch(`https://api.github.com/users/${name}`);
-    console.log(data.json());
-    return data;
-  } catch (e) {
-    console.log("There was an error fetching the data: " + error)
-  }
+const getData = async (userName) => {
+  fetch(`https://api.github.com/users/${userName}`)
+    // Handle success
+    .then(response => response.json())  // convert to json
+    .then(json => console.log(json))    //print data to console
+    .catch(err => console.log('Request Failed', err)); // Catch errors
 }

@@ -3,6 +3,16 @@ import styles from "../styles/Home.module.css";
 import { useState } from "react";
 export default function Home() {
   const [userName, setUserName] = useState("imstupidpleasehelp");
+  const [userData, setUserData] = useState({})
+  const getData = async (userName) => {
+    fetch(`https://api.github.com/users/${userName}`)
+      // Handle success
+      .then(response => response.json())  // convert to json
+      .then(json => console.log(json))    //print data to console
+      .catch(err => console.log('Request Failed', err)); // Catch errors
+      setUserData(json)
+      console.log(userData)
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +24,7 @@ export default function Home() {
         <h1 className={styles.title}>Github users</h1>
 
         <div className={styles.grid}>
-          {/*<form action="api/users"> */}
+          <form onSubmit={() => getData(userName)}> 
           <input
             placeholder="Username"
             onChange={e => setUserName(e.target.value)}
@@ -22,20 +32,18 @@ export default function Home() {
             value={userName}
           
           ></input>
-          {userName}
-        </div>
+          <button type="submit">Lookup</button>
+        </form>
+          
+        </div>{userName}
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        
           Powered by{" "}
           <img src="/download.png" alt="Vercel Logo" className={styles.logo} />
           Doge
-        </a>
+        
       </footer>
     </div>
   );
