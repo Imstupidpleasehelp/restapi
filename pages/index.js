@@ -4,18 +4,20 @@ import { useState } from "react";
 export default function Home() {
   const [userName, setUserName] = useState("imstupidpleasehelp");
   const [userData, setUserData] = useState({});
-  const getData = async (userName) => {
-    
-    fetch(`https://api.github.com/users/imstupidpleasehelp`)
-      // Handle success
-      .then((response) => response.json()) // convert to json
-      .then((json) => setUserData(json), console.log(json)) //print data to console
-      .catch((err) => console.log("Request Failed", err)); // Catch errors
-    ;
-    console.log(userData);
-  };
+  const getData = async (userName, callback) => {
+    let userNameData  = await get(`https://api.github.com/users`)
+    //use string literals
+    let userNameJson = await userNameData.json();
+    return userNameJson;
+   }
+   
+   const getActivity = async () => {
+    let jsonData = await activitiesActions.getData(userName);
+     console.log(jsonData)
+   }
   const ClickIt = (e) => {
     getData();
+    getActivity();
     e.preventDefault
   }
   return (
@@ -29,14 +31,14 @@ export default function Home() {
         <h1 className={styles.title}>Github users</h1>
 
         <div className={styles.grid}>
-          <form onSubmit={() => ClickIt()}>
+          <form onSubmit={() => getData()}>
             <input
-              placeholder="Username"
-              onChange={(e) => setUserName(e.target.value)}
+             
+              onChange={(e) => setUserName(e.target.value, e.preventDefault)}
               type="text"
               value={userName}
             ></input>
-            <button type="button" >Lookup</button>
+            <button type="submit"  >Lookup</button>
           </form>
           {userName}
         </div>
