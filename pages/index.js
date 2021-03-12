@@ -5,15 +5,19 @@ export default function Home() {
   const [userName, setUserName] = useState("imstupidpleasehelp");
   const [userData, setUserData] = useState({});
   const getData = async (userName) => {
-    fetch(`https://api.github.com/users/${userName}`)
+    
+    fetch(`https://api.github.com/users/imstupidpleasehelp`)
       // Handle success
       .then((response) => response.json()) // convert to json
-      .then((json) => console.log(json)) //print data to console
+      .then((json) => setUserData(json), console.log(json)) //print data to console
       .catch((err) => console.log("Request Failed", err)); // Catch errors
-    setUserData(json);
+    ;
     console.log(userData);
   };
-  
+  const ClickIt = (e) => {
+    getData();
+    e.preventDefault
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -25,14 +29,14 @@ export default function Home() {
         <h1 className={styles.title}>Github users</h1>
 
         <div className={styles.grid}>
-          <form onSubmit={() => getData(userName)}>
+          <form onSubmit={() => ClickIt()}>
             <input
               placeholder="Username"
               onChange={(e) => setUserName(e.target.value)}
               type="text"
               value={userName}
             ></input>
-            <button type="submit">Lookup</button>
+            <button type="button" >Lookup</button>
           </form>
           {userName}
         </div>
