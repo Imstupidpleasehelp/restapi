@@ -10,8 +10,8 @@ export default function Home() {
     getData();
     e.preventDefault
   }
-  const getData = () => {
-    fetch("https://blockchain.info/ticker") // Call the fetch function passing the url of the API as a parameter
+  const getData = async () => {
+    fetch(`https://api.github.com/users/${userName}`) // Call the fetch function passing the url of the API as a parameter
       .then((resp) => resp.json()) // Transform the data into json
       .then((resp) => {
       
