@@ -7,7 +7,18 @@ export default function Home() {
   
   const clickIt = (e) => {
     console.log(userName);
+    getData();
     e.preventDefault
+  }
+  const getData = () => {
+    fetch("https://blockchain.info/ticker") // Call the fetch function passing the url of the API as a parameter
+      .then((resp) => resp.json()) // Transform the data into json
+      .then((resp) => {
+      
+        setUserData(resp);
+        
+      });
+      console.log(userData)
   }
   return (
     <div className={styles.container}>
