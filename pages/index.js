@@ -20,7 +20,9 @@ export default function Home() {
       });
       console.log(userData)
   }
+
   return (
+    
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -40,7 +42,7 @@ export default function Home() {
             ></input>
             <button type="submit" onClick={(e) => clickIt(e)}  >Lookup</button>
          
-          {userName}
+            
         </div>
         
       </main>
