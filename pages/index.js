@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [userName, setUserName] = useState("imstupidpleasehelp");
   const [userData, setUserData] = useState({});
-  
+  useEffect(() => {
+    console.log(userData)
+  }, [userData])
   const clickIt = (e) => {
     console.log(userName);
     getData();
@@ -18,14 +20,14 @@ export default function Home() {
         setUserData(resp);
         
       });
-      console.log(userData)
+      //console.log(userData)
   }
 
   return (
     
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Fetch Github Users</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -44,7 +46,8 @@ export default function Home() {
          
             
         </div>
-        
+        <div className="">
+        <img src={userData.avatar_url}></img></div>
       </main>
 
       <footer className={styles.footer}>
