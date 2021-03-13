@@ -5,26 +5,23 @@ export default function Home() {
   const [userName, setUserName] = useState("imstupidpleasehelp");
   const [userData, setUserData] = useState({});
   useEffect(() => {
-    console.log(userData)
-  }, [userData])
+    console.log(userData);
+  }, [userData]);
   const clickIt = (e) => {
     console.log(userName);
     getData();
-    e.preventDefault
-  }
+    e.preventDefault;
+  };
   const getData = async () => {
     fetch(`https://api.github.com/users/${userName}`) // Call the fetch function passing the url of the API as a parameter
       .then((resp) => resp.json()) // Transform the data into json
       .then((resp) => {
-      
         setUserData(resp);
-        
       });
-      //console.log(userData)
-  }
+    //console.log(userData)
+  };
 
   return (
-    
     <div className={styles.container}>
       <Head>
         <title>Fetch Github Users</title>
@@ -35,19 +32,25 @@ export default function Home() {
         <h1 className={styles.title}>Github users</h1>
 
         <div className={styles.grid}>
-          
-            <input
-             
-              onChange={(e) => setUserName(e.target.value)}
-              type="text"
-              value={userName}
-            ></input>
-            <button type="submit" onClick={(e) => clickIt(e)}  >Lookup</button>
-         
-            
+          <input
+            onChange={(e) => setUserName(e.target.value)}
+            type="text"
+            value={userName}
+          ></input>
+          <button type="submit" onClick={(e) => clickIt(e)}>
+            Lookup
+          </button>
         </div>
-        <div className="">
-        <img src={userData.avatar_url}></img></div>
+        <div className={styles.userBox}>
+          <img
+            className={styles.userImage}
+            src={userData.avatar_url}
+            alt={userData.name}
+          ></img>{" "}
+          <h3>{userData.name}</h3> <h5>{userData.login}</h5>
+          <p>Followers: <br />{userData.followers}</p><p>Following: <br />{userData.following}</p>
+          <p>{userData.location}</p>{" "}
+        </div>
       </main>
 
       <footer className={styles.footer}>
