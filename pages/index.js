@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 export default function Home() {
-  const [userName, setUserName] = useState("imstupidpleasehelp");
+  const [userName, setUserName] = useState("");
   const [userData, setUserData] = useState({});
   useEffect(() => {
     console.log(userData);
@@ -38,6 +38,7 @@ export default function Home() {
           <input
             onChange={(e) => setUserName(e.target.value)}
             type="text"
+            placeholder="User name here"
             value={userName}
           ></input>
           <button type="submit" onClick={(e) => clickIt(e)}>
