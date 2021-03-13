@@ -6,6 +6,9 @@ export default function Home() {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     console.log(userData);
+    if (userData.message === "Not Found") {
+      alert('User not found')
+    }
   }, [userData]);
   const clickIt = (e) => {
     console.log(userName);
