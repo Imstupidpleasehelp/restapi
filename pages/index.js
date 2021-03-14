@@ -2,10 +2,11 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 export default function Home() {
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("imstupidpleasehelp");
   const [userData, setUserData] = useState({});
   useEffect(() => {
     console.log(userData);
+    getData();
     if (userData.message === "Not Found") {
       alert('User not found')
     }
